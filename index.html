@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <base target="_top">
+    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <title>Stripe Checkout Test</title>
+  </head>
+  <body>
+    <p>ようこそ！</p>
+    <form action="<?= url ?>" method="POST">
+    <script
+      src = "https://checkout.stripe.com/checkout.js"
+      data-key = "<?= STRIPE_PUBLISH_KEY ?>"
+      class = "stripe-button"
+      data-amount = "2980"
+      data-email = "<?= email?>"
+      data-currency = "JPY"
+      data-name = "商品Aを買う"
+      data-description = "商品Aを購入できます"
+      data-image = "https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale = "ja"
+      data-label="購入する"
+    >
+    </script>
+    <input type="hidden" name="line_id" value="Ua600a53153a905ed0c63fc7f3b62a7ad" />
+    </form>
+  </body>
+</html>
