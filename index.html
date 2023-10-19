@@ -8,13 +8,12 @@
   </head>
   <body>
     <p>ようこそ！</p>
-    <form action="<?= url ?>" method="POST">
+    <form action="https://script.google.com/macros/s/AKfycbyAiigG4bQdyS-FxHyIHdZdos81SzuRLSoErZmWXAfsK-1eM7Immhj8DKzf2JRZMaQ/exec" method="POST">
     <script
       src = "https://checkout.stripe.com/checkout.js"
-      data-key = "<?= STRIPE_PUBLISH_KEY ?>"
+      data-key = "pk_test_51Jn1g0G6OcdqOYZIp9al58ouAPoSUPXXK1y0PouJGw7TsabXlnLz0DeJekkitzYB4LSqJESDELFcITGI8QF1qxgr00NkObvsNs"
       class = "stripe-button"
       data-amount = "2980"
-      data-email = "<?= email?>"
       data-currency = "JPY"
       data-name = "商品Aを買う"
       data-description = "商品Aを購入できます"
@@ -23,7 +22,23 @@
       data-label="購入する"
     >
     </script>
-    <input type="hidden" name="line_id" value="Ua600a53153a905ed0c63fc7f3b62a7ad" />
     </form>
   </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script> -->
+  <script>
+    liff.init({
+      liffId: "2001231478-JeXbrmrG"
+    }).catch((err) => {
+      console.log(err);
+    });
+    liff.ready.then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+      const idToken = liff.getDecodedIDToken();
+      const userId = idToken.sub;
+      $('form').append(`<input type="hidden" name="line_id" value="${userId}" />`);
+    })
+  </script>
 </html>
